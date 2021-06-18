@@ -1,0 +1,42 @@
+<!doctype html>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+<!-- StyleSheet Link -->
+<link href="<%=ORSView.STYLESHEET%>" rel="stylesheet">
+
+
+<title></title>
+<style type="text/css">
+body{
+	background-image: "images/Bg.jpg";
+}
+</style>
+</head>
+<body>
+
+	<div class="container" id="container">
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<div class="ty-auto" id="App_Body">
+
+
+
+
+			<div id="welcome_String" style="margin-bottom: 40vh;">
+				<font id="Welcome_font">Welcome To Online Result System</font>
+			</div>
+
+
+
+		</div>
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+	</div>
+</body>
+</html>

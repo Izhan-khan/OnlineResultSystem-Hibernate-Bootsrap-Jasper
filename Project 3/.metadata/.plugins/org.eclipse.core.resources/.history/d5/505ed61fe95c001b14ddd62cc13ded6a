@@ -1,0 +1,206 @@
+package in.co.sunrays.proj3.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
+import in.co.sunrays.proj3.dto.BaseDTO;
+import in.co.sunrays.proj3.dto.FacultyDTO;
+import in.co.sunrays.proj3.exception.ApplicationException;
+import in.co.sunrays.proj3.exception.DuplicateRecordException;
+import in.co.sunrays.proj3.model.FacultyModel_Interface;
+import in.co.sunrays.proj3.model.ModelFactory;
+import in.co.sunrays.proj3.utility.DataUtility;
+import in.co.sunrays.proj3.utility.DataValidator;
+import in.co.sunrays.proj3.utility.PropertyReader;
+import in.co.sunrays.proj3.utility.ServletUtility;
+
+/**
+ * Faculty functionality Controller. Performs operation for add, update, delete
+ * and get Faculty
+ * 
+ * @author SUNRAYS Technologies
+ * @version 1.0
+ * @Copyright (c) SUNRAYS Technologies
+ */
+
+public class Faculty_Controller extends Base_Controller {
+
+	private static final long serialVersionUID = 1L;
+
+	private static Logger log = Logger.getLogger(Faculty_Controller.class);
+
+	@Override
+	protected boolean validate(HttpServletRequest request) {
+
+		log.info("FacultyCtl Method validate Started");
+
+		boolean pass = true;
+
+		if (DataValidator.isNull(request.getParameter("name"))) {
+			request.setAttribute("name", PropertyReader.getValue("error.require", "Name"));
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("qualification"))) {
+			request.setAttribute("qualification", PropertyReader.getValue("error.require", "Qualification"));
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("email"))) {
+			request.setAttribute("email", PropertyReader.getValue("error.require", "Email"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("mobileNo"))) {
+			request.setAttribute("mobileNo", PropertyReader.getValue("error.require", "Mobile Number"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("gender"))) {
+			request.setAttribute("gender", PropertyReader.getValue("error.select", "Gender"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("dob"))) {
+			request.setAttribute("dob", PropertyReader.getValue("error.select", "Date of Birth"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("collegeId"))) {
+			request.setAttribute("collegeId", PropertyReader.getValue("error.select", "College Id"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("courseId"))) {
+			request.setAttribute("courseId", PropertyReader.getValue("error.select", "Course Id"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("subjectId"))) {
+			request.setAttribute("subjectId", PropertyReader.getValue("error.select", "Subject Id"));
+			pass = false;
+		}
+		
+		log.info("FacultyCtl Method validate Ended");
+
+		return pass;
+	}
+
+	@Override
+	protected BaseDTO populateDTO(HttpServletRequest request) {
+
+		log.info("FacultyCtl Method populateDTO Started");
+
+		FacultyDTO dto = new FacultyDTO();
+
+		dto.setId(DataUtility.getLong(request.getParameter("id")));
+
+		dto.setName(DataUtility.getString(request.getParameter("name")));
+
+		dto.setQualification(DataUtility.getString(request.getParameter("qualification")));
+
+		dto.setEmail(DataUtility.getString(request.getParameter("email")));
+
+		dto.setGender(DataUtility.getString(request.getParameter("gender")));
+
+		dto.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
+
+		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
+
+		dto.setCollegeId(DataUtility.getLong(request.getParameter("collegeId")));
+
+		dto.setCourseId(DataUtility.getLong(request.getParameter("CourseId")));
+		
+		dto.setSubjectId(DataUtility.getLong(request.getParameter("SubjectId")));
+		
+		
+		log.info("FacultyCtl Method populateDTO Ended");
+
+		return dto;
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		log.info("FacultyCtl Method doGet Started");
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		// get model
+		FacultyModel_Interface model = ModelFactory.getInstance().getFacultyModel();
+
+		long id = DataUtility.getLong(request.getParameter("id"));
+
+		if (OP_SAVE.equalsIgnoreCase(op)) {
+
+			FacultyDTO dto = (FacultyDTO) populateDTO(request);
+
+			try {
+				if (id > 0) {
+					model.update(dto);
+				} else {
+					long pk = model.add(dto);
+					dto.setId(pk);
+				}
+				ServletUtility.setDto(dto, request);
+				ServletUtility.setSuccessMessage("Data is successfully saved", request);
+
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+				log.error(e);
+				ServletUtility.handleException(e, request, response);
+				return;
+			} catch (DuplicateRecordException e) {
+				ServletUtility.setDto(dto, request);
+				ServletUtility.setErrorMessage("Faculty Name already exists", request);
+			}
+
+		} else if (OP_DELETE.equalsIgnoreCase(op)) {
+
+			FacultyDTO dto = (FacultyDTO) populateDTO(request);
+			try {
+				model.delete(dto);
+				ServletUtility.redirect(ORSView.FACULTY_LIST_CTL, request, response);
+				return;
+
+			} catch (ApplicationException e) {
+				log.error(e);
+				ServletUtility.handleException(e, request, response);
+				return;
+			}
+
+		} else if (OP_CANCEL.equalsIgnoreCase(op)) {
+
+			ServletUtility.redirect(ORSView.FACULTY_LIST_CTL, request, response);
+			return;
+
+		} else { // View page
+
+			if (id > 0 || op != null) {
+				FacultyDTO dto;
+				try {
+					dto = model.findByPK(id);
+					ServletUtility.setDto(dto, request);
+				} catch (ApplicationException e) {
+					log.error(e);
+					ServletUtility.handleException(e, request, response);
+					return;
+				}
+			}
+		}
+
+		ServletUtility.forward(ORSView.FACULTY_VIEW, request, response);
+
+		log.info("FacultyCtl Method doGet Ended");
+	}
+
+	@Override
+	protected String getView() {
+		return ORSView.FACULTY_VIEW;
+	}
+
+}

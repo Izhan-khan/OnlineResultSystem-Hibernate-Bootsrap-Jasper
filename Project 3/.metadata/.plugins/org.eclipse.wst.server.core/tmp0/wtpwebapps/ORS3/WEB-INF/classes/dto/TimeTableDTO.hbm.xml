@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 13, 2021, 6:47:40 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="dto.TimeTableDTO" table="TIMETABLE">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="examTime" type="java.lang.String">
+			<column name="EXAMTIME" />
+		</property>
+		<property name="examDate" type="java.util.Date">
+			<column name="EXAMDATE" />
+		</property>
+		<property name="subjectId" type="java.lang.Long">
+			<column name="SUBJECT_ID" />
+		</property>
+		<property name="courseId" type="java.lang.Long">
+			<column name="COURSE_ID" />
+		</property>
+		<property name="semester" type="java.lang.Long">
+			<column name="SEMESTER" />
+		</property>
+		<property name="createdBy" type="java.lang.String"
+			length="50">
+			<column name="CREATED_BY" />
+		</property>
+		<property name="modifiedBy" type="java.lang.String"
+			length="50">
+			<column name="MODIFIED_BY" />
+		</property>
+		<property name="createdDatetime" type="java.sql.Timestamp">
+			<column name="CREATED_DATETIME" />
+		</property>
+		<property name="modifiedDatetime" type="java.sql.Timestamp">
+			<column name="MODIFIED_DATETIME" />
+		</property>
+
+	</class>
+</hibernate-mapping>

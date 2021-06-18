@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.hibernate.eclipse.launch.ConsoleConfigurationLaunchConfigurationType">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/ORS3"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="4"/>
+    </listAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="ORS3"/>
+    <stringAttribute key="org.hibernate.eclipse.launch.CFG_XML_FILE" value="\ORS3\src\main\resources\hibernate.cfg.xml"/>
+    <stringAttribute key="org.hibernate.eclipse.launch.CONFIGURATION_FACTORY" value="CORE"/>
+    <listAttribute key="org.hibernate.eclipse.launch.FILE_MAPPINGS">
+        <listEntry value="\ORS3\src\main\resources\dto\CollegeDTO.hbm.xml"/>
+        <listEntry value="\ORS3\src\main\resources\dto\MarksheetDTO.hbm.xml"/>
+        <listEntry value="\ORS3\src\main\resources\dto\RoleDTO.hbm.xml"/>
+        <listEntry value="\ORS3\src\main\resources\dto\StudentDTO.hbm.xml"/>
+        <listEntry value="\ORS3\src\main\resources\dto\UserDTO.hbm.xml"/>
+    </listAttribute>
+    <stringAttribute key="org.hibernate.eclipse.launch.HIBERNATE_VERSION" value="5.4"/>
+</launchConfiguration>

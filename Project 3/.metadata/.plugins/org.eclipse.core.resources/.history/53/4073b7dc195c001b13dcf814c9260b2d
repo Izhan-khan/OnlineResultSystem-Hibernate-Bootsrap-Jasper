@@ -1,0 +1,48 @@
+<!doctype html>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+<!-- StyleSheet Link -->
+<link href="<%=ORSView.STYLESHEET%>" rel="stylesheet">
+
+
+<title></title>
+
+</head>
+<body>
+
+	<div class="container" id="container">
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<div class="ty-auto" id="App_Body">
+
+
+
+
+			<div id="welcome_String" style="margin-bottom: 40vh;">
+				<font id="Welcome_font">Welcome To Online Result System</font>
+			</div>
+
+
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown button</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+	</div>
+</body>
+</html>

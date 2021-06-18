@@ -1,0 +1,69 @@
+<!doctype html>
+<%@page import="in.co.sunrays.proj3.controller.Login_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+<!-- StyleSheet Link -->
+<link href="StyleSheet.css" rel="stylesheet">
+
+
+<title></title>
+
+</head>
+<body>
+	<div class="container" id="container">
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<div class="ty-auto" id="App_Body">
+
+
+
+			<div id="login_backgound">
+				<div class="form-block text-white">
+					<div class="text-center mt-5">
+						<h3>Login</h3>
+
+					</div>
+
+
+					<form action="" method="post">
+
+
+						<div class="form-group first text-white">
+							<label for="username">Username</label>
+							<input type="text"  placeholder="Login Id" name="login" required/>
+						</div>
+						
+						<div class="form-group last mb-3">
+							<label for="password">Password</label>
+							<input type="password"  placeholder="Password" name="password" required/>
+						</div>
+						
+						
+						<button type="submit" class="btn btn-outline-primary btn-block mb-2 " name="operation" value="<%=Login_Controller.OP_SIGN_IN%>">Login</button>
+						<div class="d-sm-flex mb-5 align-items-center">
+							<span class="ml-auto"><a href="#" class="forgot-pass text-white">Forgot Password</a></span>
+						</div>
+
+
+
+
+					</form>
+
+
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+	</div>
+</body>
+</html>

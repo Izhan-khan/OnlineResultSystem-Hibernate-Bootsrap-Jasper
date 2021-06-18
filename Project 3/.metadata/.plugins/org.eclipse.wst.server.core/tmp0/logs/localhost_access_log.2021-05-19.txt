@@ -1,0 +1,17 @@
+127.0.0.1 - - [19/May/2021:15:35:36 +0530] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:38 +0530] "GET /ORS3/ HTTP/1.1" 200 704
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:38 +0530] "GET /ORS3/web-pages/StyleSheet.css HTTP/1.1" 200 1394
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:38 +0530] "GET /ORS3/images/RaysLogo.png HTTP/1.1" 200 9310
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:38 +0530] "GET /ORS3/images/4.jpg HTTP/1.1" 200 1264830
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:39 +0530] "GET /favicon.ico HTTP/1.1" 404 720
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:54 +0530] "GET /ORS3/Welcome_Controller HTTP/1.1" 200 3760
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:35:55 +0530] "GET /ORS3/images/Bg.jpg HTTP/1.1" 200 4272576
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:39:46 +0530] "GET /ORS3/Welcome_Controller HTTP/1.1" 200 3760
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:40:09 +0530] "GET /ORS3/Login_Controller HTTP/1.1" 200 5270
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:41:25 +0530] "POST /ORS3/Login_Controller HTTP/1.1" 200 9631
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:45:16 +0530] "GET /ORS3/controller/TimeTable_Controller HTTP/1.1" 200 12752
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:45:27 +0530] "POST /ORS3/controller/TimeTable_Controller HTTP/1.1" 200 13065
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:45:58 +0530] "GET /ORS3/controller/Marksheet_Controller HTTP/1.1" 200 13160
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:46:50 +0530] "POST /ORS3/controller/Marksheet_Controller HTTP/1.1" 200 13504
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:48:06 +0530] "GET /ORS3/controller/MarksheetMeritList_Controller HTTP/1.1" 200 13844
+0:0:0:0:0:0:0:1 - - [19/May/2021:15:49:19 +0530] "GET /ORS3/controller/Jasper_Controller HTTP/1.1" 200 2136

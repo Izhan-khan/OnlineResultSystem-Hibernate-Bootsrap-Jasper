@@ -1,0 +1,134 @@
+<!doctype html>
+<%@page import="java.util.Iterator"%>
+<%@page import="in.co.sunrays.proj3.dto.CollegeDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="in.co.sunrays.proj3.controller.CollegeList_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.College_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.UserRegistration_Controller"%>
+<%@page import="in.co.sunrays.proj3.utility.HTMLUtility"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="in.co.sunrays.proj3.utility.ServletUtility"%>
+<%@page import="in.co.sunrays.proj3.utility.DataUtility"%>
+<%@page import="in.co.sunrays.proj3.controller.Login_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+
+
+<!-- StyleSheet Link -->
+<link href="<%=ORSView.STYLESHEET%>" rel="stylesheet">
+
+
+<jsp:useBean id="dto" class="in.co.sunrays.proj3.dto.CollegeDTO" scope="request"></jsp:useBean>
+
+
+
+<title></title>
+
+</head>
+<body>
+	<div class="container" id="container">
+
+
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+		
+		
+		
+		<div class="ty-auto" id="App_Body">
+			<div class="ty-auto m-2 form-block text-white text-center w-100 flex-column">
+
+				<h1 class="mb-4">College List</h1>
+
+				<form action="<%=ORSView.COLLEGE_LIST_CTL%>" method="post" class="d-flex w-100 mx-3 my-5 justify-content-around"">
+
+
+					<div class="form-group first text-white mb-0">
+						<label for="name">College Name</label> <input name="name" type="text" class="form-control" placeholder="Enter College Name" id="name" value="<%=DataUtility.getStringData(dto.getName())%>">
+					</div>
+					<div>
+						<font style="color: red;"><%=ServletUtility.getMessage("name", request)%></font>
+					</div>
+
+
+					<div class="form-group first text-white mb-0">
+						<label for="city">City</label> <input name="city" type="text" class="form-control" placeholder="Enter College City" id="city" value="<%=DataUtility.getStringData(dto.getCity())%>">
+					</div>
+					<div>
+						<font style="color: red;"><%=ServletUtility.getMessage("phoneNo", request)%></font>
+					</div>
+
+					<div class="d-grid gap-2 col-2 ">
+						<button type="submit" class="btn btn-outline-primary btn-block my-4 " name="operation" value="<%=CollegeList_Controller.OP_SEARCH%>">Search</button>
+					</div>
+
+
+				</form>
+
+
+
+				<%
+					List list = ServletUtility.getList(request);
+
+					if (list != null && list.size() != 0) {
+						Iterator it = list.iterator();
+				%>
+
+				<table class="table table-fill  table-striped my-5">
+					<thead class="table-dark">
+						<tr>
+							<th class="" scope="col">College Name</th>
+							<th class="" scope="col">Address</th>
+							<th class="" scope="col">State</th>
+							<th class="" scope="col">City</th>
+							<th class="" scope="col">Phone Number</th>
+						</tr>
+					</thead>
+					<tbody class="table-light">
+						<%
+							while (it.hasNext()) {
+									dto = (CollegeDTO) it.next();
+						%>
+
+
+						<tr>
+							<td class="" scope="row"><%=dto.getName()%></td>
+							<td class=""><%=dto.getAddress()%></td>
+							<td class=""><%=dto.getState()%></td>
+							<td class=""><%=dto.getCity()%></td>
+							<td class=""><%=dto.getPhoneNo()%></td>
+						</tr>
+
+						<%
+							}
+							}
+						%>
+
+					</tbody>
+				</table>
+
+
+
+
+			</div>
+
+		</div>
+
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+
+
+	</div>
+	<!-- Hidden Fields -->
+
+	<input type="hidden" name="id" value="<%=dto.getId()%>">
+	<input type="hidden" name="createdBy" value="<%=dto.getCreatedBy()%>">
+	<input type="hidden" name="modifiedBy" value="<%=dto.getModifiedBy()%>">
+	<input type="hidden" name="createdDatetime" value="<%=dto.getCreatedDatetime()%>">
+	<input type="hidden" name="modifiedDatetime" value="<%=dto.getModifiedDatetime()%>">
+</body>
+</html>

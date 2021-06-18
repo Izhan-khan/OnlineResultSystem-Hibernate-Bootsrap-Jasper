@@ -1,0 +1,24 @@
+1610319524480	Copy compilation unit
+1610319530890	Delete element
+1610389517772	Rename type 'Role_Controller'
+1610389530360	Rename type 'Student_Controller'
+1610389550244	Rename compilation unit 'UserModel_Controller.java'
+1610438993829	Delete element
+1610441171029	Delete element
+1610446698713	Rename method 'setCourseName'
+1610446845450	Rename method 'getCourseName'
+1610450470529	Delete element
+1610461981375	Infer generic type arguments
+1610464534765	Delete element
+1610464552244	Copy file
+1610464555624	Copy file
+1610477849877	Delete element
+1610783368756	Copy package
+1610784040011	Copy files
+1610786385927	Delete elements
+1610786395083	Delete element
+1610789774068	Rename type 'BaseController'
+1610789804044	Rename type 'LoginController'
+1610789827795	Rename type 'RoleController'
+1610789845319	Rename type 'UserController'
+1610789856400	Rename type 'WelcomeController'

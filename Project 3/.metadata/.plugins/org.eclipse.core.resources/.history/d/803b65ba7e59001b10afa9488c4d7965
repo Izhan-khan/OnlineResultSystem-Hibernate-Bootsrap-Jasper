@@ -1,0 +1,74 @@
+<!doctype html>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+<!-- StyleSheet Link -->
+<link href="StyleSheet.css" rel="stylesheet">
+ 
+<!-- Date-picker Jquery library -->
+<!--
+<link rel="stylesheet" href="https://raw.githubusercontent.com/biohzrdmx/jQuery.DatePicker/series2/jquery.datepicker2.css">
+ <script type="text/javascript" src="https://raw.githubusercontent.com/biohzrdmx/jQuery.DatePicker/series2/jquery.datepicker2.css"></script>
+ 
+ -->
+ 
+<!-- Default Theme (Core) -->
+<link rel="stylesheet" href="lib/themes/pickadate.default.css">
+<!-- Default Theme (Date Picker) -->
+<link rel="stylesheet" href="lib/themes/default.date.css">
+<!-- Default Theme (Time Picker If Needed)-->
+<link rel="stylesheet" href="lib/themes/default.time.css">
+<!-- Classic Theme (Core) -->
+<link rel="stylesheet" href="lib/themes/pickadate.classic.css">
+<!-- Classic Theme (Date Picker) -->
+<link rel="stylesheet" href="lib/themes/classic.date.css">
+<!-- Classic Theme (Time Picker If Needed)-->
+<link rel="stylesheet" href="lib/themes/classic.time.css">
+<!-- For RTL Layout -->
+<link rel="stylesheet" href="lib/themes/rtl.css">
+<!-- jQuery -->
+<script src="/path/to/cdn/jquery.min.js"></script>
+<!-- Core -->
+<script src="/path/to/lib/picker.js"></script>
+<!-- Date Picker -->
+<script src="/path/to/lib/picker.date.js"></script>
+<!-- Time Picker -->
+<script src="/path/to/lib/picker.time.js"></script>
+<!-- Language -->
+<script src="/path/to/lib/translations/fr_FR.js"></script>
+<!-- Required For Legacy Browsers (IE 8-) -->
+<script src="/path/to/lib/legacy.js"></script>
+
+<title></title>
+
+</head>
+<body>
+<script $('.datepicker').pickadate();></script> 
+	<div class="container" id="container">
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<div class="ty-auto" id="App_Body">
+
+
+
+
+			<div id="welcome_String"><font id = "Welcome_font">Welcome To Online Result System</font></div>
+			
+			<div id="input"><input id="exampleDate" class="datepicker" name="date" type="text" value="14 August, 2014" data-value="2014-08-08" /></div>
+
+
+
+			
+			
+
+		</div>
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+	</div>
+</body>
+</html>

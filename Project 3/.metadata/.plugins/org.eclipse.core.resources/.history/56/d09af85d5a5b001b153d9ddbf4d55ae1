@@ -1,0 +1,197 @@
+<!doctype html>
+<%@page import="in.co.sunrays.proj3.controller.UserRegistration_Controller"%>
+<%@page import="in.co.sunrays.proj3.utility.HTMLUtility"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="in.co.sunrays.proj3.utility.ServletUtility"%>
+<%@page import="in.co.sunrays.proj3.utility.DataUtility"%>
+<%@page import="in.co.sunrays.proj3.controller.Login_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+
+
+<!-- BootStrap plugin-->
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<!-- Always remember to call the above files first before calling the
+	bootstrap.min.js file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
+
+
+<!-- StyleSheet Link -->
+<link href="<%=ORSView.STYLESHEET%>" rel="stylesheet">
+
+
+<jsp:useBean id="dto" class="in.co.sunrays.proj3.dto.UserDTO" scope="request"></jsp:useBean>
+
+<%
+String fName = null;
+String lName = null;
+
+if(dto !=null &&  dto.getName() != null){
+	String fnlName = DataUtility.getStringData(dto.getName());
+	String[] Name = fnlName.split(" ", 2);
+
+	fName = Name[0];
+	lName = Name[1];
+}
+%>
+
+
+<title></title>
+
+</head>
+<body>
+	<div class="container" id="container">
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<div class="ty-auto" id="App_Body">
+
+
+			<div>
+				<H2 style="color: red;"><%=ServletUtility.getErrorMessage(request)%></H2>
+			</div>
+			<div>
+				<H2 style="color: red;"><%=ServletUtility.getSuccessMessage(request)%></H2>
+			</div>
+
+
+
+			<div id="login_backgound">
+				<div class="form-block text-white ">
+					<div class="text-center my-4 ">
+						<h3>Registration</h3>
+
+					</div>
+
+
+					<form action="<%=ORSView.USER_REGISTRATION_CTL%>" method="post">
+
+
+						<div class="form-group first text-white mb-0">
+							<label for="username">First Name</label>
+							<input name="firstName" type="text" class="form-control" placeholder="Enter First Name" id="firstname" value="<%=DataUtility.getStringData(fName)%>" required>
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("firstName", request)%></font>
+						</div>
+
+
+						<div class="form-group first text-white mb-0">
+							<label for="username">Last Name</label>
+							<input name="lastName" type="text" class="form-control" placeholder="Enter Last Name" id="lastname" value="<%=DataUtility.getStringData(lName)%>" required>
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("lastName", request)%></font>
+						</div>
+
+
+						<div class="form-group first text-white mb-0">
+							<label for="username">Username</label>
+							<input name="login" type="text" class="form-control" placeholder="Enter Login Id" id="username" value="<%=DataUtility.getStringData(dto.getLogin())%>" required>
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("login", request)%></font>
+						</div>
+
+
+						<div class="form-group last mb-0">
+							<label for="password">Password</label>
+							<input name="password" type="password" class="form-control" placeholder="Enter Password" id="password" value="<%=DataUtility.getStringData(dto.getPassword())%>" required>
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("password", request)%></font>
+						</div>
+
+
+						<div class="form-group last mb-0">
+							<label for="password">Confirm Password</label>
+							<input name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" id="confirmPassword" value="<%=DataUtility.getStringData(dto.getPassword())%>" required>
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("password", request)%></font>
+						</div>
+
+
+
+
+						<div class="form-group last mb-0">
+							<label for="password">Gender </label>
+
+							<%
+								HashMap<String,String> map = new HashMap<String,String>();
+								map.put("Male", "Male");
+								map.put("Female", "Female");
+
+								String htmlList = HTMLUtility.getList("gender", dto.getGender(), map);
+							%>
+							
+							<p class="form-group last mb-0"><%=htmlList%></p>
+
+						</div>
+
+
+
+						<div class="form-group last mb-0">
+							<label for="dob">Date of Birth</label>
+							<input name="dob" type="text" class="form-control " placeholder="dd/mm/yyyy" id="datepicker" value="<%=DataUtility.getLocalDateString(dto.getDob())%>" readonly="readonly" required>
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("dob", request)%></font>
+						</div>
+
+
+
+
+
+						<button type="submit" class="btn btn-outline-primary btn-block my-4 " name="operation" value="<%=UserRegistration_Controller.OP_SIGN_UP%>">Sign Up</button>
+
+
+					</form>
+
+
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- Hidden Fields -->
+
+	<input type="hidden" name="id" value="<%=dto.getId()%>">
+	<input type="hidden" name="createdBy" value="<%=dto.getCreatedBy()%>">
+	<input type="hidden" name="modifiedBy" value="<%=dto.getModifiedBy()%>">
+	<input type="hidden" name="createdDatetime" value="<%=dto.getCreatedDatetime()%>">
+	<input type="hidden" name="modifiedDatetime" value="<%=dto.getModifiedDatetime()%>">
+
+
+
+
+</body>
+</html>

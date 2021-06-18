@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;controller.Base_Controller.genericDTO(...)&apos; to &apos;populateGenericDTO&apos;&#x0D;&#x0A;- Original project: &apos;ORS3&apos;&#x0D;&#x0A;- Original element: &apos;controller.Base_Controller.genericDTO(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;controller.Base_Controller.populateGenericDTO(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;genericDTO&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;controller{Base_Controller.java[Base_Controller~genericDTO~QBaseDTO;~QHttpServletRequest;" name="populateGenericDTO" references="true" stamp="1619271264434" version="1.0"/>
+</session>

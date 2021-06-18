@@ -1,0 +1,45 @@
+<!doctype html>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+<!-- StyleSheet Link -->
+<link href="StyleSheet.css" rel="stylesheet">
+ 
+<!-- Date-picker Jquery library -->
+<!--
+<link rel="stylesheet" href="https://raw.githubusercontent.com/biohzrdmx/jQuery.DatePicker/series2/jquery.datepicker2.css">
+ <script type="text/javascript" src="https://raw.githubusercontent.com/biohzrdmx/jQuery.DatePicker/series2/jquery.datepicker2.css"></script>
+-->
+
+<title></title>
+
+</head>
+<body>
+	<div class="container" id="container">
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<div class="ty-auto" id="App_Body">
+
+
+
+
+			<div id="welcome_String"><font id = "Welcome_font">Welcome To Online Result System</font></div>
+			
+			<div id="input"><input type="text" class="form-control" name="date" id="date" data-select="datepicker">  </div>
+
+
+
+			
+			
+
+		</div>
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+	</div>
+</body>
+</html>

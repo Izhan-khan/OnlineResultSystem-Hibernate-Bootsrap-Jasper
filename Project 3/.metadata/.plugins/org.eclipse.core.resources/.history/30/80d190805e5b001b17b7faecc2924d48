@@ -1,0 +1,74 @@
+@charset "ISO-8859-1";
+
+/* Welcome Page Style */
+#container {
+	background-image:url("../images/Bg.jpg"); 
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	max-width: 100%;
+	padding: 0;
+}
+
+#App_Body{
+	height:100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5em 5em;
+}
+
+#Welcome_font{
+	font:  small-caps 43px cursive;
+	color: white;
+	display: flex;
+	align-items: center;
+	
+}
+#welcome_String{
+	display:flex;
+	align-items:center;
+	height: auto;	
+	margin-bottom: 40vh;
+}
+
+/* Login Style  */
+#login_backgound{
+	background-color: #0000005e;
+	width: 55vh;
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 12vh;
+	margin-top : 12vh;
+	
+}
+
+
+
+/* Header Style */
+#header {
+	position: sticky;
+	top: 0px;
+}
+
+#image_logo{
+	display: flex;
+	height: 8vh;
+}
+
+#navbarCollapse{
+	flex-direction: row-reverse;	
+}
+.bg-dark {
+    background-color: #0000005e!important;
+}
+
+/* Footer Style */
+#footer_container{
+	background-color: black;
+}
+#footer {
+	position: relative;
+	bottom: 0px;
+}

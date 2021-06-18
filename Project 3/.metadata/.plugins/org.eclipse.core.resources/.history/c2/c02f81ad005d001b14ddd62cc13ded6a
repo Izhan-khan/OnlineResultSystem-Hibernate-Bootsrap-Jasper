@@ -1,0 +1,173 @@
+<!doctype html>
+<%@page import="java.util.Iterator"%>
+<%@page import="in.co.sunrays.proj3.dto.SubjectDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="in.co.sunrays.proj3.controller.SubjectList_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.Subject_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.UserRegistration_Controller"%>
+<%@page import="in.co.sunrays.proj3.utility.HTMLUtility"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="in.co.sunrays.proj3.utility.ServletUtility"%>
+<%@page import="in.co.sunrays.proj3.utility.DataUtility"%>
+<%@page import="in.co.sunrays.proj3.controller.Login_Controller"%>
+<%@page import="in.co.sunrays.proj3.controller.ORSView"%>
+<html lang="en">
+<head>
+
+
+
+<!-- StyleSheet Link -->
+<link href="<%=ORSView.STYLESHEET%>" rel="stylesheet">
+
+
+<jsp:useBean id="dto" class="in.co.sunrays.proj3.dto.SubjectDTO" scope="request"></jsp:useBean>
+
+<%  List courseList =  (List) request.getAttribute("courseList"); 
+ %>
+
+<title></title>
+
+</head>
+<body>
+	<div class="container" id="container">
+
+
+		<div id="header">
+			<jsp:include page="Header.jsp"></jsp:include>
+		</div>
+
+		<%
+			if (ServletUtility.getErrorMessage(request) != "") {
+		%>
+
+		<div class="alert alert-danger text-center" role="alert">
+			<%=ServletUtility.getErrorMessage(request)%>
+		</div>
+		<%
+			}
+			if (ServletUtility.getSuccessMessage(request) != "") {
+		%>
+		<div class="alert alert-success text-center" role="alert">
+			<%=ServletUtility.getSuccessMessage(request)%>
+		</div>
+		<%
+			}
+		%>
+
+
+		<div class="ty-auto flex-column h-90vh" id="App_Body">
+			<div class="ty-auto m-2 form-block text-white text-center w-100 flex-column">
+
+				<h1 class="mb-4">Subject List</h1>
+
+				<form action="<%=ORSView.SUBJECT_LIST_CTL%>" method="post" class="d-flex w-100 mx-3 my-5 justify-content-around">
+
+
+					<div class="form-group first text-white mb-0">
+						<label for="name">Subject Name</label> <input name="name" type="text" class="form-control" placeholder="Enter Subject Name" id="name" value="<%=DataUtility.getStringData(dto.getName())%>">
+					</div>
+					<div>
+						<font style="color: red;"><%=ServletUtility.getMessage("name", request)%></font>
+					</div>
+
+
+					
+						<div class="form-group last mb-0">
+							<label for="password">Course</label>
+
+							<%
+
+								String htmlList = HTMLUtility.getList("course", String.valueOf(dto.getCourseId()), courseList);
+							%>
+
+							<p class="form-group last mb-0"><%=htmlList%></p>
+
+						</div>
+						<div>
+							<font style="color: red;"><%=ServletUtility.getMessage("course", request)%></font>
+						</div>
+
+
+
+
+					<div class="d-grid gap-2 col-2 ">
+						<button type="submit" class="btn btn-outline-primary btn-block my-4 " name="operation" value="<%=SubjectList_Controller.OP_SEARCH%>">Search</button>
+					</div>
+
+
+				</form>
+
+
+
+				<%
+					int pageNo = ServletUtility.getPageNo(request);
+					int pageSize = ServletUtility.getPageSize(request);
+
+					List list = ServletUtility.getList(request);
+
+					if (list != null && list.size() != 0) {
+						Iterator it = list.iterator();
+				%>
+
+				<table class="table table-fill  table-striped my-5">
+					<thead class="table-dark">
+						<tr>
+							<th class="" scope="col">Subject Name</th>
+							<th class="" scope="col">Description</th>
+							<th class="" scope="col">Course Id</th>
+						</tr>
+					</thead>
+					<tbody class="table-light">
+						<%
+							while (it.hasNext()) {
+									dto = (SubjectDTO) it.next();
+						%>
+
+
+						<tr>
+							<td class="" scope="row"><%=dto.getName()%></td>
+							<td class=""><%=dto.getDescription()%></td>
+							<td class=""><%=dto.getCourseId()%></td>
+						</tr>
+
+						<%
+							}
+							}
+						%>
+
+					</tbody>
+				</table>
+
+
+			</div>
+			<form action="<%=ORSView.SUBJECT_CTL%>" method="post" class="d-flex w-100 mx-3 my-5 justify-content-around">
+
+				<table width="100%">
+					<tr class="d-flex justify-content-around w-100">
+						<td><input type="submit" name="operation" class="btn btn-outline-light btn-md" style="font-size: 17px" value="<%=SubjectList_Controller.OP_PREVIOUS%>" <%=pageNo > 1 ? "" : "disabled"%>></td>
+						<td><input type="submit" name="operation" class="btn btn-outline-light btn-md" style="font-size: 17px" value="<%=SubjectList_Controller.OP_NEW%>"></td>
+						<td><input type="submit" name="operation" class="btn btn-outline-light btn-md" style="font-size: 17px" value="<%=SubjectList_Controller.OP_DELETE%>"></td>
+						<td><input type="submit" name="operation" class="btn btn-outline-light btn-md" style="font-size: 17px" value="<%=SubjectList_Controller.OP_NEXT%>" <%=(list.size() > 10) ? "" : "disabled"%>></td>
+					</tr>
+					<tr></tr>
+				</table>
+
+			</form>
+		</div>
+
+
+		<div id="footer">
+			<jsp:include page="Footer.jsp"></jsp:include>
+		</div>
+
+
+	</div>
+	<!-- Hidden Fields -->
+
+	<input type="hidden" name="id" value="<%=dto.getId()%>">
+	<input type="hidden" name="createdBy" value="<%=dto.getCreatedBy()%>">
+	<input type="hidden" name="modifiedBy" value="<%=dto.getModifiedBy()%>">
+	<input type="hidden" name="createdDatetime" value="<%=dto.getCreatedDatetime()%>">
+	<input type="hidden" name="modifiedDatetime" value="<%=dto.getModifiedDatetime()%>">
+</body>
+</html>

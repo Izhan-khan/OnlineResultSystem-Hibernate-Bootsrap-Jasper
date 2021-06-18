@@ -1,0 +1,130 @@
+package in.co.sunrays.proj3.test;
+
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
+import in.co.sunrays.proj3.dto.CourseDTO;
+import in.co.sunrays.proj3.exception.ApplicationException;
+import in.co.sunrays.proj3.exception.DuplicateRecordException;
+import in.co.sunrays.proj3.model.CourseModel_Hibernate_Implement;
+import in.co.sunrays.proj3.model.CourseModel_Interface;
+
+public class CourseModel_Test {
+
+	static CourseDTO dto = new CourseDTO();
+	
+	static CourseModel_Interface model = new CourseModel_Hibernate_Implement();
+	
+	
+	
+	public static void testAdd() {
+
+		dto.setName("B.A");
+		dto.setDescription("Bachealor of Arts");
+		dto.setDuration(4L);
+		dto.setCreatedBy("Admin");
+		dto.setModifiedBy("Admin");
+		dto.setCreatedDatetime(new Timestamp(new Date().getTime()));
+		dto.setModifiedDatetime(new Timestamp(new Date().getTime()));
+		
+		
+		try {
+			model.add(dto);
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		} catch (DuplicateRecordException e) {
+			e.printStackTrace();
+		}
+	
+	
+	}
+ 
+	public static void testFindByPK() {
+		
+			try {
+				CourseDTO dto =model.findByPK(1);
+				
+				System.out.println(dto.getId());
+				System.out.println(dto.getName());
+				System.out.println(dto.getDescription());
+				System.out.println(dto.getDuration());
+				
+			} catch (ApplicationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+	}
+	
+	public static void testFindByName() {	 
+
+		try {
+			CourseDTO dto =model.findByName("B.E");
+			
+			System.out.println(dto.getId());
+			System.out.println(dto.getName());
+			System.out.println(dto.getDescription());
+			System.out.println(dto.getDuration());
+			
+		} catch (ApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void testDelete() {
+		
+		dto.setId(2L);
+		
+		try {
+			model.delete(dto);
+		} catch (ApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+
+	public static void testSearch() {
+		
+		dto.setName("");
+		List list = null; 
+		try {
+		list =	 model.search(dto);
+		} catch (ApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(list);
+		
+	}
+	
+
+	public static void testUpdate() {
+		
+		dto.setId(2L);
+		dto.setDuration(3L);
+		
+		try {
+			model.update(dto);
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		} catch (DuplicateRecordException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		testSearch();
+		
+	}
+
+	
+}	
+	
